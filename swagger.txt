@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: API pour la gestion des étudiants
+  version: 1.0.0
+servers:
+  - url: http://STD22080.com
+paths:
+  /students:
+    get:
+      summary: Récupérer les informations des étudiants
+      responses:
+        '200':
+          description: Succès - Renvoie les informations des étudiants
+          content:
+            application/json:
+              example:
+                - student_id: 1
+                  name: Maharavo
+                  age: 19
+                - student_id: 2
+                  name: Faly
+                  age: 18
+        '500':
+          description: Erreur - La récupération des informations a échoué
+          content:
+            application/json:
+              example:
+                message: Échec de la récupération des informations
+
+    post:
+      summary: Ajouter un nouvel étudiant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                age:
+                  type: integer
+              required:
+                - name
+                - age
+      responses:
+        '200':
+          description: Succès - L'étudiant a été ajouté avec succès
+          content:
+            application/json:
+              example:
+                message: Étudiant ajouté avec succès
+        '500':
+          description: Erreur - L'ajout de l'étudiant a échoué
+          content:
+            application/json:
+              example:
+                message: Échec de l'ajout de l'étudiant
